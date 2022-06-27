@@ -1,10 +1,12 @@
 import React from 'react';
 
-export default function AccountLookup({setname, setid}) {
+export default function AccountLookup({setsummoner}) {
   const search = (e) => {
     e.preventDefault();
-    setname(e.target.sumName.value)
-    setid(e.target.tagline.value)
+    setsummoner({
+      name: e.target.sumName.value,
+      tag: e.target.tagline.value || 'na1'
+    })
   }
 
   return (
