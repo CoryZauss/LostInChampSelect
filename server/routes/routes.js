@@ -42,10 +42,18 @@ router.get('/singleMatch', async (req, res) => {
 router.get('/liveMatch', async (req, res) => {
   const sumId = req.query.sumId
   const region = req.query.region;
-  const { data } = await axios.get(
-    `https://${region}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/${sumId}?api_key=${riotKey}`
-  )
-  res.send(data)
+  let data;
+  try {
+     await axios.get(
+      `https://${region}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/${sumId}?api_key=${riotKey}`
+     )
+    .then(game => data = game.data)
+  } catch (err) {
+    console.log('error getting live match')
+    data = 'Summoner is not currently in game'
+  } finally {
+    res.send(data)
+  }
 })
 
 module.exports = router;

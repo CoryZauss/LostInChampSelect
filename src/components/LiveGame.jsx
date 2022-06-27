@@ -3,18 +3,25 @@ import React, { useState, useEffect } from "react";
 export default function LiveGame({ currentgame }) {
   return (
     <>
-      <div>Live Game</div>
-      <div>
-        {currentgame.gameMode}
-        {currentgame.participants && currentgame.participants.map((player) => {
-          return (
-            <div>
-              {"player: "} {player.summonerName}
-              {"champ ID: "} {player.championId}
-            </div>
-          );
-        })}
-      </div>
+      {typeof currentgame === "string" ? (
+        <div>{currentgame}</div>
+      ) : (
+        <div>
+          Live Game
+          <div>
+            {currentgame.gameMode}
+            {currentgame.participants &&
+              currentgame.participants.map((player) => {
+                return (
+                  <div key={player.summonerName}>
+                    {"player: "} {player.summonerName}
+                    {"  champ ID: "} {player.championId}
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      )}
     </>
   );
 }
