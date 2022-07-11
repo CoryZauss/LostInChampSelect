@@ -14,6 +14,9 @@ export default function MatchHistory({ history }) {
                     <div key={player.summonerName}>
                       <div className="player">{player.summonerName}</div>
                       <div className="champ">{player.championName}</div>
+                      <div className="score">Score:{player.kills}/{player.deaths}/{player.assists} : KDA :{Math.floor(player.challenges.kda)}</div>
+                      <div>damage per minute: {Math.floor(player.challenges.damagePerMinute)}</div>
+                      <div>skillshots hit: {player.challenges.skillshotsHit}</div>
                       ---------------------
                     </div>
                   );
