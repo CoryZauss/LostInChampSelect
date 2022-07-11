@@ -7,7 +7,6 @@ export default function LiveGame({ currentgame }) {
         <div>{currentgame}</div>
       ) : (
         <div>
-          Live Game
           <div>
             {currentgame.gameMode}
             {currentgame.participants &&

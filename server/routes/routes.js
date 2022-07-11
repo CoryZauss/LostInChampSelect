@@ -1,5 +1,4 @@
 var router = require("express").Router();
-
 require('dotenv').config()
 const riotKey = process.env.RIOT_KEY
 const axios = require('axios')
@@ -22,8 +21,9 @@ router.get('/accountBySummonerName', async (req, res) => {
   res.send(data)
 })
 
-router.get('/matchHistory', async (req, res) => {
-  const puuid = req.query.puuid
+router.get('/matchHistoryByPuuid', async (req, res) => {
+  const puuid = req.query.puuid;
+
   const { data } = await axios.get(
     `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=5&api_key=${riotKey}`
   );
